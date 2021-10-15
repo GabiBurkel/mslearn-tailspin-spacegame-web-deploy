@@ -39,7 +39,7 @@ steps:
 
 
 #
-# Build
+# Build and Publish with a template
 #
 
 - task: DotNetCoreCLI@2
@@ -48,25 +48,15 @@ steps:
     command: restore
     projects: '**/*.csproj'
 
-- task: DotNetCoreCLI@2
-  displayName: Build the project - $(buildConfiguration)
-  inputs:
-    command: build
-    arguments: --no-restore --configuration $(buildConfiguration)
-    projects: '**/*.csproj'
+# build with template as Debug version
+- template: templates/build.yml
+  parameters:
+    buildConfiguration: Debug
 
-#
-# Publish
-# 
-
-- task: DotNetCoreCLI@2
-  displayName: Publish the project - Release
-  inputs:
-    command: publish
-    projects: '**/*.csproj'
-    publishWebProjects: false
-    arguments: --no-build --configuration Release --output $(Build.ArtifactStagingDirectory)/Release
-    zipAfterPublish: true
+# build with template as Release version
+- template: templates/build.yml
+  parameters:
+    buildConfiguration: Release
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
