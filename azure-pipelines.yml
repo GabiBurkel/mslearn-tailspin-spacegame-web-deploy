@@ -8,6 +8,11 @@ variables:
   buildConfiguration: Release
 steps:
 
+- task: CmdLine@2
+  displayName: Gabi-Was-Here-Test
+  inputs:
+    script: "echo Gabi was here ! yeah "
+
 - task: UseDotNet@2
   displayName: Use .NET SDK 5.x
   inputs:
