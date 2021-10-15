@@ -49,12 +49,12 @@ steps:
     projects: '**/*.csproj'
 
 # build with template as Debug version
-- template: templates/build.yml
+- template: templates/build.yaml
   parameters:
     buildConfiguration: Debug
 
 # build with template as Release version
-- template: templates/build.yml
+- template: templates/build.yaml
   parameters:
     buildConfiguration: Release
 
