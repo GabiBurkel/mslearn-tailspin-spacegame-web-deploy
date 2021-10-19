@@ -125,6 +125,7 @@ stages:
             inputs:
               azureSubscription: 'Pipeline-Service-Connection'
               appName: '$(WebAppNameTest)'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
 - stage: 'Staging'
   displayName: 'Deploy to the staging environment'
   dependsOn: Test
@@ -146,3 +147,4 @@ stages:
             inputs:
               azureSubscription: 'Pipeline-Service-Connection'
               appName: '$(WebAppNameStaging)'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
